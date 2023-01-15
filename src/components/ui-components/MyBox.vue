@@ -5,15 +5,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "MyBox",
+};
 </script>
 
 <style>
 .my-box {
-  padding: 1rem;
   margin: 1.5rem 0;
+  padding: 1rem;
   border-radius: 6px;
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
-  background-color: beige;
+  background-color: rgb(245, 245, 245);
 }
 </style>

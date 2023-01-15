@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <div class="container">
-      <div class="contetn">
+    <div class="container font-monospace">
+      <div class="content">
         <AppInfo />
-        <div class="search-panel">
+        <MyBox class="search-panel">
           <SearchPanel />
           <FilterButtons />
-        </div>
+        </MyBox>
         <MovieList />
         <MovieAddForm />
       </div>
@@ -16,10 +16,20 @@
 
 <script>
 import AppInfo from "@/components/app-info/AppInfo.vue";
+import MyBox from "@/components/ui-components/MyBox.vue";
+import SearchPanel from "@/components/search-panel/SearchPanel.vue";
+import FilterButtons from "@/components/filter-buttons/FilterButtons.vue";
+import MovieList from "@/components/movie-list/MovieList.vue";
+import MovieAddForm from "@/components/movie-add-from/MovieAddForm.vue";
 export default {
   name: "App",
   components: {
     AppInfo,
+    MyBox,
+    SearchPanel,
+    FilterButtons,
+    MovieList,
+    MovieAddForm,
   },
 };
 </script>
@@ -30,11 +40,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  .container {
-    max-width: 1140px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
 }
 </style>

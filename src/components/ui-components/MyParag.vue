@@ -1,5 +1,5 @@
 <template>
-  <p class="my-parag">
+  <p>
     <slot></slot>
   </p>
 </template>
