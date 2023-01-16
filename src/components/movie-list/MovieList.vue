@@ -1,7 +1,14 @@
 <template>
   <MyBox>
     <ul class="list-group">
-      <MyMovieItem v-for="movie in movies" :key="movie.id" :movie="movie" />
+      <MyMovieItem
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"
+        @onLike="$emit('onLike', $event)"
+        @onFavourite="$emit('onFavourite', $event)"
+        @onRemove="$emit('onRemove', $event)"
+      />
     </ul>
   </MyBox>
 </template>

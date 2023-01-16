@@ -13,6 +13,9 @@
         </MyBox>
         <MovieList
           :movies="onFilterButtonHandler(onSearchHandler(movies, term), filter)"
+          @onLike="onLikeHandler"
+          @onFavourite="onFavouriteHandler"
+          @onRemove="onRemoveHandler"
         />
         <MovieAddForm />
       </div>
@@ -88,6 +91,25 @@ export default {
     };
   },
   methods: {
+    onRemoveHandler(id) {
+      this.movies = this.movies.filter((element) => element.id !== id);
+    },
+    onFavouriteHandler(id) {
+      this.movies = this.movies.map((element) => {
+        if (element.id === id) {
+          element.favourite = !element.favourite;
+        }
+        return element;
+      });
+    },
+    onLikeHandler(id) {
+      this.movies = this.movies.map((element) => {
+        if (element.id === id) {
+          element.like = !element.like;
+        }
+        return element;
+      });
+    },
     onFilterButtonHandler(arr, filter) {
       switch (filter) {
         case "popular":
