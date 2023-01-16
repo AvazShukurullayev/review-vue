@@ -8,10 +8,12 @@
           :likedMoviesLength="movies.filter((c) => c.like).length"
         />
         <MyBox class="search-panel">
-          <SearchPanel @onSearch="onSearchHandler" />
-          <FilterButtons />
+          <SearchPanel @onSearch="onSearch" />
+          <FilterButtons @onFilterButton="onFilterButton" />
         </MyBox>
-        <MovieList :movies="movies" />
+        <MovieList
+          :movies="onFilterButtonHandler(onSearchHandler(movies, term), filter)"
+        />
         <MovieAddForm />
       </div>
     </div>
@@ -59,13 +61,56 @@ export default {
           like: false,
           id: 3,
         },
+        {
+          title: "Amir Temur",
+          viewers: 811,
+          favourite: false,
+          like: false,
+          id: 4,
+        },
+        {
+          title: "Empire of Mogul",
+          viewers: 1428,
+          favourite: false,
+          like: false,
+          id: 5,
+        },
+        {
+          title: "Murad IV. Bagdad Fatihi",
+          viewers: 2455,
+          favourite: false,
+          like: false,
+          id: 6,
+        },
       ],
       term: "",
+      filter: "all",
     };
   },
   methods: {
-    onSearchHandler(param) {
+    onFilterButtonHandler(arr, filter) {
+      switch (filter) {
+        case "popular":
+          return arr.filter((c) => c.favourite);
+        case "mostViewers":
+          return arr.filter((c) => c.viewers > 500);
+        default:
+          return arr;
+      }
+    },
+    onFilterButton(param) {
+      this.filter = param;
+    },
+    onSearch(param) {
       this.term = param;
+    },
+    onSearchHandler(arr, term) {
+      if (term.length == 0) {
+        return arr;
+      }
+      return arr.filter((c) =>
+        c.title.toLowerCase().includes(term.toLowerCase())
+      );
     },
   },
 };
