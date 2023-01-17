@@ -17,7 +17,7 @@
           @onFavourite="onFavouriteHandler"
           @onRemove="onRemoveHandler"
         />
-        <MovieAddForm />
+        <MovieAddForm @onSubmitHandler="onSubmitHandler" />
       </div>
     </div>
   </div>
@@ -91,6 +91,9 @@ export default {
     };
   },
   methods: {
+    onSubmitHandler(par) {
+      this.movies.push(par);
+    },
     onRemoveHandler(id) {
       this.movies = this.movies.filter((element) => element.id !== id);
     },
